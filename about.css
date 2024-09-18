@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #400E92;
+    --font-color: #424242;
+    --background-color: #ffffff;
+    --secondary-color: #f0f0f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    color: var(--font-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-top: 2em;
+    padding: 70px; /* Adjust based on your header height */
+}
+
+header {
+    position: fixed;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-top: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+    background: rgba(255, 255, 255, 0.8); /* Ensure nav has a background for blur effect */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--font-color);
+    font-weight: 300;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--font-color);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Menu Toggle Styles */
+.menu-toggle:checked + .hamburger div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle:checked + .hamburger div:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.menu-toggle:checked ~ ul {
+    right: 0;
+}
+
+.menu-toggle:checked ~ .menu-backdrop {
+    display: block;
+}
+
+.menu-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        height: calc(100vh - 70px);
+        text-align: center;
+        transition: 0.3s;
+        padding-top: 2rem;
+    }
+
+    nav ul.active {
+        right: 0;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    nav ul li {
+        margin: 2rem 0;
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active div:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+.about-me, .skills, .tech-stack {
+    margin: 60px 0;
+}
+
+h1, .section-title {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.about-me p, .skills p, .tech-stack p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.abt-info {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+.abt-info img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.skills > div:first-child {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.skill-container {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-container:hover {
+    transform: translateY(-5px);
+}
+
+.skill-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.skill-desc {
+    font-size: 0.9em;
+}
+
+.tags {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+footer {
+    color: #000000;
+    margin-top: 15em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.5em; /* Make the text smaller */
+}
+
+.contact {
+    font-size: 1.5em; /* Adjust the contact icon size */
+}
+
+footer i {
+    font-size: 20px;
+    margin: 0 10px;
+    color: var(--font-color);
+    transition: all 0.2s;
+}
+
+footer i:hover {
+    color: var(--primary-color);
+    font-size: 25px;
+}
+
+.cpr {
+    font-size: 0.em; /* Adjust the copyright text size */
+    color: #979797;
+}
+
+@media (min-width: 768px) {
+    .abt-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .abt-info img {
+        width: 200vw;
+        height: 70vh;
+    }
+
+    .skills > div:last-child {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Create a 3-column grid */
+        gap: 1em; /* Add gap between grid items */
+    }
+
+    .skills {
+        text-align: left;
+    }
+
+    .skill-container {
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+        width: 100%; /* Make sure skill container fits within the grid column */
+    }
+
+    .skill-image {
+        width: 200px;
+        height: 200px;
+        margin-right: 0;
+        margin-bottom: 0.5em;
+    }
+
+    .skill-name {
+        font-size: 0.9em;
+    }
+
+    .skill-desc {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        text-align: center;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    .abt-info {
+        flex-direction: column;
+    }
+
+    .abt-info img {
+        order: -1;
+    }
+
+    .skills > div:last-child {
+        display: flex;
+        flex-direction: column; /* Stack skill containers vertically */
+        gap: 20px; /* Add gap between skill containers */
+    }
+
+    .skill-container {
+        padding: 15px;
+    }
+
+    .skill-name {
+        font-size: 1.1em;
+    }
+
+    .skill-desc {
+        font-size: 0.8em;
+    }
+
+    .skill-image {
+        width: 250px;
+        height: 200px;
+        margin-right: 0;
+        margin-bottom: 0.5em;
+    }
+
+    /* Add spacing to .tech-stack on mobile */
+    .tech-stack > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 10px;
+    }
+
+    .tech-stack {
+        margin-top: 20px;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .wrap {
+        margin: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1, .section-title {
+        font-size: 2em;
+    }
+
+    .about-me p, .skills p, .tech-stack p {
+        font-size: 1em;
+    }
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
